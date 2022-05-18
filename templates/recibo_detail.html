@@ -1,0 +1,215 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-BR" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=3.0"/>
+
+
+
+    <meta name="description" content="Este recibo serve como comprovante do pagamento realizado e recebido, não restando mais nada em aberto, referente ao que está descrito no documento."/>
+            <meta name="robots" content="noindex">
+
+    <meta property="og:locale" content="pt_BR">
+    <meta property="og:title" content="Recibo de Pagamento | Cobre Fácil">
+    <meta property="og:url" content="https://www.cobrefacil.com.br">
+    <meta property="og:description" content="Este recibo serve como comprovante do pagamento realizado e recebido, não restando mais nada em aberto, referente ao que está descrito no documento.">
+    <meta property="og:image" content="https://www.cobrefacil.com.br/site-asset/images/plataforma-cobre-facil.png">
+    <meta property="og:image:secure_url" content="https://www.cobrefacil.com.br/site-asset/images/plataforma-cobre-facil.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:type" content="website">
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/site-asset/images/favicon/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/site-asset/images/favicon/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/site-asset/images/favicon/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/site-asset/images/favicon/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/site-asset/images/favicon/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/site-asset/images/favicon/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/site-asset/images/favicon/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/site-asset/images/favicon/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/site-asset/images/favicon/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/site-asset/images/favicon/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/site-asset/images/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/site-asset/images/favicon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/site-asset/images/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/site-asset/images/favicon/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/site-asset/images/favicon/ms-icon-144x144.png">
+    <meta name="theme-color" content="#0059f1">
+
+    <link id="sprite-svg" rel="prefetch" href="/site-asset/images/sprite.svg?v=06072021">
+
+    <meta name="facebook-domain-verification" content="49omanfyelfroakb1k61wo7mdow14o" />
+
+        <meta name="csrf-param" content="_csrf-frontend">
+<meta name="csrf-token" content="77GSW7O20aDCBHH98k6gtdSza5qVZHuz9wlgZxDlN5vawdY41t3oxPA9Oc6jeOnD-f8i9_4wS_W-XBEUKIt7zg==">
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://use.typekit.net/wal4msa.css" rel="stylesheet">
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<link href="/site-asset/css/style.css?v=1649264224" rel="stylesheet">
+    <!-- Google Tag Manager -->
+
+    <!-- End Google Tag Manager -->
+</head>
+
+<style>
+
+    img {
+  width: 60px;
+  }
+</style>
+
+
+<!--VOLTAR-->
+
+
+
+    <div class="receipt-viewer-body">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 offset-lg-2">
+                    <h2 class="h2">
+                        <center>Recibo</center>
+                    </h2>
+
+                   <!--- <p>
+                                                    Enviamos uma cópia do recibo para seu e-mail - {{ object.email }}✉️
+                            </a>-->
+                                            </p>
+                    <div class="card">
+                        <div class="card-body">
+                             {% if  user.imagem == "" %}
+
+                             {% else %}
+                                      <center><img src="{{ user.imagem.url }}" class="img-responsive" alt=""></center>
+
+                             {% endif %}
+
+
+
+                            <h2 class="h6">
+                                <center>Recibo de Pagamento Nº {{ object.id }} </center></h2>
+
+                                <center>Endereço {{ object.profissional.endereco }} </center></h2>
+                                                        <br>
+
+                            <br>
+
+                            <h3 class="h8">
+                                Dados do recibo
+                            </h3>
+                            <table class="table">
+                                <tr>
+                                    <td>Data de emissão</td>
+                                    <td class="col-value">{{ object.data }} </td>
+                                </tr>
+                            </table>
+                        <b><div class="card-body">
+                            <h3 class="h8">
+                                Dados do pagador
+                            </h3>
+                            <table class="table">
+                                <tr>
+                                    <td>Nome</td>
+                                    <td class="col-value">{{ object.paciente.nome }}</td>
+                                </tr>
+                                <tr>
+                                    <td>CPF/CNPJ</td>
+                                    <td class="col-value">{{ object.paciente.cpf }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Celular</td>
+                                    <td class="col-value">{{ object.paciente.telefone }}</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="card-body">
+                            <h3 class="h8">
+                                Dados do beneficiário
+                            </h3>
+
+                                <table class="table">
+                                    <tr>
+                                        <td>Nome</td>
+                                        <td class="col-value"><b>{{ user.nome }} {{user.sobrenome}}</b></td>
+                                    </tr>
+                                    <tr>
+                                        <td>CPF/CNPJ</td>
+                                        <td class="col-value"><b>{{ user.cpf }}</b></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Cidade</td>
+                                        <td class="col-value"><b>(84) {{ user.nrTelCelular }}</b></td>
+                                    </tr>
+                                </table>
+
+
+                        </div>
+                        <div class="card-body">
+                            <h3 class="h8">
+                                Serviço
+                            </h3>
+                            <table class="table">
+
+                                <tbody>
+                                                                                                                                        <tr>
+                                        <td>{{ object.servico }}</td>
+
+                                    </tr>
+                                                                </tbody>
+                                <tfoot>
+                                <tr>
+                                    <td colspan="2">
+                                        <b>Valor Total: R$ {{ object.valor }}      </b>                               </td>
+                                </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                               <div class="card-body">
+                                <h3 class="h8">
+                                    Observação: {{ object.observacao }}
+                                </h3>
+                                <p>
+                                                                   </p>
+                            </div>
+                                                <div class="card-body text-center">
+                            <p>
+                                Este recibo serve como comprovante do pagamento realizado e recebido, não<br class="d-none d-lg-block">
+                                restando mais nada em aberto, referente ao que está descrito no documento.
+                            </p>
+                            <div class="card-signature">
+
+                                   {{ user.nome }} {{user.sobrenome}} <br> CRO/{{ object.profissional.estado }}: {{ object.profissional.cro }}
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <!--<center><div class="card-after">
+                        <a target="_new" href="#">
+                            <svg class="icon" width="17" height="17"><use xlink:href="#print"></use></svg>
+                            Imprimir Recibo
+                        </a>
+                        <a target="_new" href="/recibo-online/arquivo/G7Y0JZ" class="btn btn-sm rounded-pill btn-outline-primary">
+                            <svg class="icon" width="16" height="16"><use xlink:href="#download"></use></svg>
+                            Fazer download
+                        </a>
+                        <a target="_new" href="https://wa.me/?text=https%3A%2F%2Fwww.cobrefacil.com.br%2Frecibo-online%2FG7Y0JZ" class="btn btn-sm rounded-pill btn-whatsapp">
+                            <svg class="icon" width="19" height="19"><use xlink:href="#whatsapp"></use></svg>
+                            Envie pelo WhatsApp
+                        </a> -->
+                    </div></center>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+</body></html>

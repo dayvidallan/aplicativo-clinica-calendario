@@ -1,0 +1,128 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block title %}Event List{% endblock title %}
+
+{% block breadcrumb %}
+    <div>
+        <h1><i class="fa fa-medkit"></i> {{user.clinica}}</h1>
+        <p>Prontuários</p>
+    </div>
+    <ul class="app-breadcrumb breadcrumb">
+        <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
+        <li class="breadcrumb-item"><a href="#">Prontuários</a></li>
+    </ul>
+{% endblock breadcrumb %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <div class="tile">
+            <div class="tile-body">
+                <div class="table-responsive">
+                    <div id="sampleTable_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4 no-footer">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <table class="table table-hover table-bordered dataTable no-footer" id="sampleTable" role="grid" aria-describedby="sampleTable_info">
+                                      <span class="pull-right">
+                                          <a  href="{% url 'recibo_add' %}">
+                                              <button type="button" class="btn btn-secondary">
+                                                <span class="fa fa-plus"></span> Adicionar
+                                              </button>
+                                          </a>
+                                            <a  href="#">
+                                              <button type="button" class="btn btn-dark">
+                                                 Relatórios
+                                              </button>
+                                          </a>
+                                    </span>
+                                  </div>
+                                </div>
+
+                                <div class="card-body">
+
+
+
+
+                                                <table class="table table-sm table-responsive-sm">
+                                                    <thead class="thead-dark">
+                                                      <tr>
+                                                        <th>Nº</th>
+                                                        <th>Nome</th>
+                                                        <th>CPF</th>
+                                                        <th>Procedimento</th>
+                                                        <th>Valor</th>
+                                                        <th>Valor C/ Recibo</th>
+                                                        <th>Recibo</th>
+                                                      </tr>
+                                                    </thead>
+                                                    <tbody>
+                                         {% for object in object_list %}
+
+                                          {% if user.id == object.profissional.id %}
+
+                                            <tr class="{% if event.priority == '1' %} table-success{% elif event.priority == '2' %} table-warning{% elif event.priority == '3' %} table-danger{% else %} table-default{% endif %}">
+
+                                                  <td>
+                                                  <a class="text-dark" href="#">{{ object.id }}</a>
+                                                </td>
+                                                  <td>
+                                                  <a class="text" href="{% url 'recibo_edit' object.id %}">{{ object.paciente.nome }}</a>
+                                                </td>
+                                                <td class="text-truncate">
+                                                  <a class="text-dark" href="#">{{ object.paciente.cpf }}</a>
+                                                </td>
+                                                <td class="text-truncate">
+                                                  <a class="text-dark" href="#">{{ object.procedimento.procedimeto }}</a>
+                                                </td>
+                                                  <td class="text-truncate">
+                                                  <a class="text-dark" href="#">{{ object.valor}}</a>
+                                                </td>
+                                                  {% if object.recibo  %}
+                                                    <td class="text-truncate">
+                                                      <a class="text-dark" href="#">{{ object.valor}}</a>
+                                                    </td>
+                                                    <td class="text-truncate">
+                                                        <a target="_blank" type="button" href="{% url 'recibo_detail' object.id %}">
+                                                            <button type="button" class="btn btn-dark">
+                                                               Recibo
+                                                            </button>
+                                                        </a>
+                                                      </td>
+                                                  {% else %}
+                                                    <td class="text-truncate">
+                                                      <a class="text-dark" href="#">-</a>
+                                                    </td>
+                                                    <td class="text-truncate">
+
+                                                    </td>
+                                                  {% endif %}
+
+                                            </tr>
+
+                                             {% else %}
+
+                                            {% endif %}
+
+                                        </td>
+                                      </tr>
+                                    {% endfor %}
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock content %}
+
+{% block extrascripts %}
+    <script type="text/javascript" src="{% static 'js/plugins/jquery.dataTables.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/plugins/dataTables.bootstrap.min.js' %}"></script>
+    <script type="text/javascript">$('#sampleTable').DataTable();</script>
+{% endblock extrascripts %}

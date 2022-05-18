@@ -1,0 +1,94 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block title %}Event List{% endblock title %}
+
+{% block breadcrumb %}
+    <div>
+        <h1><i class="fa fa-medkit"></i> {{user.clinica}}</h1>
+        <p>Prontuários</p>
+    </div>
+    <ul class="app-breadcrumb breadcrumb">
+        <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
+        <li class="breadcrumb-item"><a href="#">Prontuários</a></li>
+    </ul>
+{% endblock breadcrumb %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <div class="tile">
+            <div class="tile-body">
+                <div class="table-responsive">
+                    <div id="sampleTable_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4 no-footer">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <table class="table table-hover table-bordered dataTable no-footer" id="sampleTable" role="grid" aria-describedby="sampleTable_info">
+                                    <span class="pull-right">
+                                      <a  href="{% url 'paciente_add' %}">
+                                          <button type="button" class="btn btn-secondary">
+                                            <span class="fa fa-plus"></span> Adicionar
+                                          </button>
+                                      </a>
+                                            {% if user.id == user.id %}
+
+                                                 <a target="_blank" href="{{ user.upload.url }}">
+                                                  <button type="button" class="btn btn-dark">
+                                                     Receituário
+                                                  </button></a>
+
+                                            {% else %}
+
+                                                  <a  href="#">
+                                                  <button type="button" class="btn btn-dark">
+                                                     Receituário
+
+
+                                            {% endif %}
+
+
+                                    <thead>
+                                        <tr role="row">
+                                            <th class="sorting_asc" tabindex="0" aria-controls="sampleTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 261.641px;">Nº</th>
+                                            <th class="sorting" tabindex="0" aria-controls="sampleTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 417.312px;">Nome</th>
+                                            <th class="sorting" tabindex="0" aria-controls="sampleTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 189.281px;">TELEFONE</th>
+                                            <th class="sorting" tabindex="0" aria-controls="sampleTable" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 102.141px;">DATA DA CONSULTA</th>
+                                            <th class="sorting" tabindex="0" aria-controls="sampleTable" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 102.141px;">PRONTUÁRIO</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        {% for object in object_list %}
+                                            <tr role="row" class="odd">
+                                                <td class="sorting_1">{{ forloop.counter }}</td>
+                                                <td><a class="text" href="{% url 'paciente_edit' object.id %}">{{ object.nome }}</a></td>
+                                                <td>{{ object.telefone }}</td>
+                                                <td>{{ object.data_consulta}}</td>
+                                                 <td>
+                                                      <a type="button" href="{% url 'paciente_detail' object.id %}">
+                                                        <button type="button" class="btn btn-dark">
+                                                           Prontuário
+                                                        </button>
+                                                    </a>
+                                                 </td>
+                                            </tr>
+                                        {% endfor %}
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock content %}
+
+{% block extrascripts %}
+    <script type="text/javascript" src="{% static 'js/plugins/jquery.dataTables.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/plugins/dataTables.bootstrap.min.js' %}"></script>
+    <script type="text/javascript">$('#sampleTable').DataTable();</script>
+{% endblock extrascripts %}

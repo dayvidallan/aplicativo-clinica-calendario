@@ -1,0 +1,69 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block title %}Event List{% endblock title %}
+
+{% block breadcrumb %}
+    <div>
+        <h1><i class="fa fa-medkit"></i> {{user.clinica}}</h1>
+        <p>Finaceiro</p>
+    </div>
+    <ul class="app-breadcrumb breadcrumb">
+        <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
+        <li class="breadcrumb-item"><a href="#">Financeiro</a></li>
+    </ul>
+{% endblock breadcrumb %}
+
+{% block content %}
+
+ <div  class="container">
+        <form method="post" enctype="multipart/form-data" xmlns="http://www.w3.org/1999/html">
+
+            <input type="hidden" name="_token" value="KqXYW17ieq2LPliZfWjnyrHlfMwZ6iQQPPglAh1k">
+              <div >
+
+                  <div class="row" style="padding-top: 60px;">
+
+                      <div class="col-lg-8">
+                          <div class="card">
+
+
+
+                              <div class="card-header">Recibo
+                                  <span class="pull-right">
+                                      <a  href="#">
+                                          <button type="button" class="btn btn-secondary">
+                                            <span class="fa fa-plus"></span> Procedimento
+                                          </button>
+                                      </a>
+
+                                   </span>
+
+                          </a></div>
+                                {% csrf_token %}
+                                {{ form }}
+
+                                  <div class="row" style="padding-top: 30px;">
+                                          <div class="col-lg-8">
+
+                                              <div class="form-group row">
+                                                  <div class="col-md-11">
+
+                                                          <button type="submit" class="btn btn-secondary" id="btnContinuar" onclick="continuar(0);">
+                                                              Confirmar
+                                                          </button>
+
+                                                  </div>
+                                              </div>
+                                          </div>
+                                      </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+            </input>
+        </form>
+ </div>
+{% endblock content %}
+
+

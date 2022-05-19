@@ -17,6 +17,13 @@ class PacienteList(ListView):
 
 
 
+class RelatPacienteList(ListView):
+    model = Paciente
+    template_name = 'relatorio_paciente_list.html'
+    paginate_by = 10
+
+
+
 class PacienteCreate(CreateView):
     model = Paciente
     template_name = 'paciente_form.html'

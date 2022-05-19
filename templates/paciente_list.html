@@ -31,11 +31,14 @@
                                           </button>
                                       </a>
                                             {% if user.id == user.id %}
-
-                                                 <a target="_blank" href="{{ user.upload.url }}">
-                                                  <button type="button" class="btn btn-dark">
-                                                     Receituário
-                                                  </button></a>
+                                                {% if user.upload == "" %}
+                                                     <a href="#">
+                                                {% else %}
+                                                      <a target="_blank" href="{{ user.upload.url }}">
+                                                {% endif %}
+                                                      <button type="button" class="btn btn-dark">
+                                                         Receituário
+                                                      </button></a>
 
                                             {% else %}
 
@@ -49,7 +52,7 @@
 
                                     <thead>
                                         <tr role="row">
-                                            <th class="sorting_asc" tabindex="0" aria-controls="sampleTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 261.641px;">Nº</th>
+                                            <th class="sorting_asc" tabindex="0" aria-controls="sampleTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 100.281px;">Nº</th>
                                             <th class="sorting" tabindex="0" aria-controls="sampleTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 417.312px;">Nome</th>
                                             <th class="sorting" tabindex="0" aria-controls="sampleTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 189.281px;">TELEFONE</th>
                                             <th class="sorting" tabindex="0" aria-controls="sampleTable" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 102.141px;">DATA DA CONSULTA</th>

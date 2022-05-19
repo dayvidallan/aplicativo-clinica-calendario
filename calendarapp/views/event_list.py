@@ -21,3 +21,5 @@ class RunningEventsListView(ListView):
 
     def get_queryset(self):
         return Event.objects.get_running_events(user=self.request.user)
+
+

@@ -6,13 +6,14 @@
 {% block breadcrumb %}
     <div>
         <h1><i class="fa fa-medkit"></i> {{user.clinica}}</h1>
-        <p>Financeiro</p>
+        <p>Relatórios Financeiros</p>
     </div>
     <ul class="app-breadcrumb breadcrumb">
         <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
-        <li class="breadcrumb-item"><a href="#">Financeiro</a></li>
+        <li class="breadcrumb-item"><a href="#">Relatórios Financeiros</a></li>
     </ul>
 {% endblock breadcrumb %}
+
 
 {% block content %}
 <div class="row">
@@ -24,62 +25,38 @@
                         <div class="row">
                             <div class="col-sm-12">
                                 <table class="table table-hover table-bordered dataTable no-footer" id="sampleTable" role="grid" aria-describedby="sampleTable_info">
-                                      <span class="pull-right">
+                                    <span class="pull-right">
                                           <a  href="{% url 'recibo_add' %}">
                                               <button type="button" class="btn btn-secondary">
                                                 <span class="fa fa-plus"></span> Adicionar
                                               </button>
                                           </a>
-                                            <a  href="#">
-                                              <button type="button" class="btn btn-dark">
-                                                 Relatórios
-                                              </button>
-                                          </a>
+
                                     </span>
                                   </div>
                                 </div>
 
-                                <div class="card-body">
+                                    <thead>
+                                        <tr role="row">
+                                            <th class="sorting_asc" tabindex="0" aria-controls="sampleTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 100.281px;">Nº</th>
+                                            <th class="sorting" tabindex="0" aria-controls="sampleTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 417.312px;">Nome</th>
+                                            <th class="sorting" tabindex="0" aria-controls="sampleTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 200.141px;">PROCEDIMENTO</th>
+                                            <th class="sorting" tabindex="0" aria-controls="sampleTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 189.281px;">DATA DO PAGAMENTO</th>
+                                            <th class="sorting" tabindex="0" aria-controls="sampleTable" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 102.141px;">VALOR</th>
+                                            <th class="sorting" tabindex="0" aria-controls="sampleTable" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 180.141px;">RECIBO</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
 
-
-                                                <table class="table table-sm table-responsive-sm">
-                                                    <thead class="thead-dark">
-                                                      <tr>
-                                                        <th>Nº</th>
-                                                        <th>Nome</th>
-                                                        <th>CPF</th>
-                                                        <th>Procedimento</th>
-                                                        <th>Valor</th>
-                                                        <th>Valor C/ Recibo</th>
-                                                        <th>Recibo</th>
-                                                      </tr>
-                                                    </thead>
-                                                    <tbody>
-                                         {% for object in object_list %}
-
-                                          {% if user.id == object.profissional.id %}
-
-                                            <tr class="{% if event.priority == '1' %} table-success{% elif event.priority == '2' %} table-warning{% elif event.priority == '3' %} table-danger{% else %} table-default{% endif %}">
-
-                                                  <td>
-                                                  <a class="text-dark" href="#">{{ object.id }}</a>
-                                                </td>
-                                                  <td>
-                                                  <a class="text" href="{% url 'recibo_edit' object.id %}">{{ object.paciente.nome }}</a>
-                                                </td>
-                                                <td class="text-truncate">
-                                                  <a class="text-dark" href="#">{{ object.paciente.cpf }}</a>
-                                                </td>
-                                                <td class="text-truncate">
-                                                  <a class="text-dark" href="#">{{ object.procedimento.procedimeto }}</a>
-                                                </td>
-                                                  <td class="text-truncate">
-                                                  <a class="text-dark" href="#">{{ object.valor}}</a>
-                                                </td>
-                                                  {% if object.recibo  %}
-                                                    <td class="text-truncate">
-                                                      <a class="text-dark" href="#">{{ object.valor}}</a>
-                                                    </td>
+                                        {% for object in object_list %}
+                                            {% if user.id == object.profissional.id %}
+                                            <tr role="row" class="odd">
+                                                <td class="sorting_1">{{ forloop.counter }}</td>
+                                                <td><a class="text" href="{% url 'recibo_edit' object.paciente.id %}">{{ object.paciente.nome }}</a></td>
+                                                <td>{{ object.procedimento.procedimeto }}</td>
+                                                <td>{{ object.data }}</td>
+                                                <td>{{ object.valor}}</td>
+                                                 {% if object.recibo  %}
                                                     <td class="text-truncate">
                                                         <a target="_blank" type="button" href="{% url 'recibo_detail' object.id %}">
                                                             <button type="button" class="btn btn-dark">
@@ -87,7 +64,7 @@
                                                             </button>
                                                         </a>
                                                       </td>
-                                                  {% else %}
+                                                {% else %}
                                                     <td class="text-truncate">
                                                       <a class="text-dark" href="#">-</a>
                                                     </td>
@@ -95,16 +72,12 @@
 
                                                     </td>
                                                   {% endif %}
-
                                             </tr>
-
-                                             {% else %}
+                                            {% else %}
 
                                             {% endif %}
+                                        {% endfor %}
 
-                                        </td>
-                                      </tr>
-                                    {% endfor %}
 
                                     </tbody>
                                 </table>

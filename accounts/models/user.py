@@ -13,7 +13,7 @@ class UserManager(BaseUserManager):
     def _create_user(self, email, password=None, **extra_fields):
         """Creates and returns a new user using an email address"""
         if not email:  # check for an empty email
-            raise AttributeError("User must set an email address")
+            raise AttributeError("O usuário deve definir um endereço de e-mail")
         else:  # normalizes the provided email
             email = self.normalize_email(email)
 
@@ -48,7 +48,7 @@ class User(AbstractBaseUser, PermissionsMixin, models.Model):
     nome = models.CharField(max_length=100, unique=False)
     sobrenome = models.CharField(max_length=100, unique=False)
     email = models.EmailField(
-        _("Email Address"),
+        _("Endereço de email"),
         max_length=255,
         unique=True,
         help_text="Ex: example@example.com",
@@ -73,9 +73,13 @@ class User(AbstractBaseUser, PermissionsMixin, models.Model):
     imagem = models.ImageField(upload_to='upload', null=True, blank=True, verbose_name='Logo')
 
 
-    objects = UserManager()
 
     USERNAME_FIELD = "email"
 
     def __str__(self):
-        return self.nome
+        return self.email
+
+
+
+
+

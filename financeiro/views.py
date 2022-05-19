@@ -18,6 +18,7 @@ class ReciboList(ListView):
 
 
 
+
 class ReciboCreate(CreateView):
     model = Financeiro
     template_name = 'recibo_form.html'

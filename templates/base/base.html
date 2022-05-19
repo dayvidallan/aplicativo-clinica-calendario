@@ -113,10 +113,12 @@
                             <a class="dropdown-item" href="#"><i class="fa fa-cog fa-lg"></i> Configurações</a>
                         </li>
                         <li>
+                            <a class="dropdown-item" href="{% url 'accounts:signup' %}"><i class="fa fa-users"></i> Novo Usuário</a>
+                        <li>
                             <a class="dropdown-item" href="#"><i class="fa fa-user fa-lg"></i> Perfil</a>
                         </li>
                         <li>
-                            <a class="dropdown-item" href="{% url 'accounts:signout' %}"><i class="fa fa-sign-out fa-lg"></i> Sair</a>
+                            <a class="dropdown-item" href="{% url 'accounts:signout' %}"><i class="fa fa-sign-out fa-lg"></i>Sair</a>
                         </li>
                     </ul>
                 </li>

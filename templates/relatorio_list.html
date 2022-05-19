@@ -14,6 +14,7 @@
     </ul>
 {% endblock breadcrumb %}
 
+
 {% block content %}
 <div class="row">
     <div class="col-md-12">
@@ -24,6 +25,16 @@
                         <div class="row">
                             <div class="col-sm-12">
                                 <table class="table table-hover table-bordered dataTable no-footer" id="sampleTable" role="grid" aria-describedby="sampleTable_info">
+                                    <span class="pull-right">
+                                          <a  href="{% url 'recibo_add' %}">
+                                              <button type="button" class="btn btn-secondary">
+                                                <span class="fa fa-plus"></span> Adicionar
+                                              </button>
+                                          </a>
+
+                                    </span>
+                                  </div>
+                                </div>
 
                                     <thead>
                                         <tr role="row">
@@ -32,21 +43,27 @@
                                             <th class="sorting" tabindex="0" aria-controls="sampleTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 200.141px;">PROCEDIMENTO</th>
                                             <th class="sorting" tabindex="0" aria-controls="sampleTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 189.281px;">DATA DO PAGAMENTO</th>
                                             <th class="sorting" tabindex="0" aria-controls="sampleTable" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 102.141px;">VALOR</th>
-                                            <th class="sorting" tabindex="0" aria-controls="sampleTable" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 180.141px;">EMISSÃO DE RECIBO</th>
+                                            <th class="sorting" tabindex="0" aria-controls="sampleTable" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 180.141px;">Emissão de Recibo</th>
                                         </tr>
                                     </thead>
                                     <tbody>
 
                                         {% for object in object_list %}
+                                            {% if user.id == object.profissional.id %}
                                             <tr role="row" class="odd">
                                                 <td class="sorting_1">{{ forloop.counter }}</td>
-                                                <td>{{ object.nome }}</td>
-                                                <td>{{ object.procedimento }}</td>
+                                                <td>{{ object.paciente.nome }}</td>
+                                                <td>{{ object.procedimento.procedimeto }}</td>
                                                 <td>{{ object.data }}</td>
                                                 <td>{{ object.valor}}</td>
-                                                <td>{{ object.recibo}}</td>
+                                                <td>{{object.recibo }}</td>
+
                                             </tr>
+                                            {% else %}
+
+                                            {% endif %}
                                         {% endfor %}
+
 
                                     </tbody>
                                 </table>

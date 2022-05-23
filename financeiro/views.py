@@ -1,4 +1,5 @@
 from django.http import HttpResponseRedirect
+from django.shortcuts import redirect
 from django.shortcuts import render
 from django.urls import reverse
 from django.views.generic import ListView, CreateView, UpdateView
@@ -17,12 +18,16 @@ class ReciboList(ListView):
 
 
 
-
-
-class ReciboCreate(CreateView):
-    model = Financeiro
+def reecibo_create(request):
     template_name = 'recibo_form.html'
-    form_class = FinanceiroForm
+    form = FinanceiroForm(request.user, request.POST or None)
+    if request.method == 'POST':
+        if form.is_valid():
+            form.save()
+            return redirect('financeiro_list')
+
+    context = {'form': form}
+    return render(request, template_name, context)
 
 
 

@@ -52,6 +52,7 @@ class Consulta(models.Model):
     def get_absolute_url(self):
         return reverse("paciente_detail", args=(self.paciente.id,))
 
+
     @property
     def get_html_url(self):
         url = reverse("paciente_detail", args=(self.id,))

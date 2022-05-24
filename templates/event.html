@@ -1,19 +1,49 @@
-{% extends 'base.html' %}
+{% extends 'base/base.html' %}
+{% load static %}
 
-{% block title %}
-Eventos
-{% endblock %}
+{% block title %}{{user.clinica}}{% endblock title %}
+
+{% block breadcrumb %}
+    <div>
+        <h1><i class="fa fa-medkit"></i> {{user.clinica}}</h1>
+        <p>Prontuários</p>
+    </div>
+    <ul class="app-breadcrumb breadcrumb">
+        <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
+        <li class="breadcrumb-item"><a href="#">Prontuários</a></li>
+    </ul>
+{% endblock breadcrumb %}
 
 {% block content %}
-<div class="clearfix">
-  <a class="btn btn-info left" href="{% url 'calendarapp:calendar' %}"> Calendário </a>
-</div>
 
-<form method="post">
-  {% csrf_token %}
-  <table class="form form-table">
-    {{ form }}
-    <tr><td colspan="2"><button type="submit" class="btn btn-info right"> Enviar </button></td></tr>
-  </table>
-</form>
-{% endblock %}
+ <div  class="container">
+        <form method="post" enctype="multipart/form-data" xmlns="http://www.w3.org/1999/html">
+
+            <input type="hidden" name="_token" value="KqXYW17ieq2LPliZfWjnyrHlfMwZ6iQQPPglAh1k">
+              <div >
+
+                  <div class="row" style="padding-top: 60px;">
+
+                      <div class="col-lg-8">
+                          <div class="card">
+
+                              <div class="card-header">Lista de Eventos
+
+                                  {% csrf_token %}
+                                  <table class="form form-table">
+                                    {{ form }}
+                                    <tr><td colspan="2"><button type="submit" class="btn btn-info right"> Enviar </button></td></tr>
+                                  </table>
+
+                                  </div>
+                             </div>
+                      </div>
+                  </div>
+              </div>
+            </input>
+          </form>
+
+ </div>
+{% endblock content %}
+
+

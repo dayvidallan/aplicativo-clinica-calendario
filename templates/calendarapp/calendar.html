@@ -1,6 +1,6 @@
 {% extends 'base/base.html' %}
 {% load static %}
-{% block title %}Event Calendar{% endblock title %}
+{% block title %}{{user.clinica}}{% endblock title %}
 
 {% block extracss %}
   <link href="{% static 'calender/main.css' %}" rel="stylesheet" />
@@ -26,8 +26,9 @@
                     <h4 class="mb-4">Agendados</h4>
                     {% for event in events_month %}
                       <div class="fc-event">
-                          <h3>{{ event.title }}</h3>
-                          <p>Agendado dia {{ event.start_time }}</p>
+                          <h3><a style="color: #ffffff" href="{% url 'calendarapp:event_edit' event.id %}">{{ event.title }}</a></h3>
+                          <p>{{ event.description }}</p>
+                          <p>Dia: {{ event.start_time }}</p>
                       </div>
                     {% empty %}
                       <p>Nenhum evento em execução encontrado</p>
@@ -111,7 +112,7 @@
           // bangladesh Holidays
           // events: 'bn.bd#holiday@group.v.calendar.google.com',
           eventClick: function(arg) {
-            if (confirm('Are you sure you want to delete this event?')) {
+            if (confirm('Tem certeza de que deseja excluir este evento?')) {
               arg.event.remove()
             }
           },
@@ -136,7 +137,7 @@
           //   {
           //     title: 'Click for Google',
           //     url: 'http://google.com/',
-          //     start: '2020-09-28'
+          //     start: '2022-09-28'
           //   }
           // ]
         });

@@ -1,7 +1,7 @@
 {% extends 'base/base.html' %}
 {% load static %}
 
-{% block title %}Event List{% endblock title %}
+{% block title %}{{user.clinica}}{% endblock title %}
 
 {% block breadcrumb %}
     <div>
@@ -36,7 +36,7 @@
                                         {% for event in object_list %}
                                             <tr role="row" class="odd">
                                                 <td class="sorting_1">{{ forloop.counter }}</td>
-                                                <td>{{ event.title }}</td>
+                                                <td><a class="text" href="{% url 'calendarapp:event_edit' event.id %}">{{ event.title }}</a></td>
                                                 <td>{{ event.start_time }}</td>
                                                 <td>{{ event.end_time }}</td>
                                             </tr>

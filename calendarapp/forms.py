@@ -10,12 +10,12 @@ class EventForm(ModelForm):
         # datetime-local is a HTML5 input type
         widgets = {
             "title": forms.TextInput(
-                attrs={"class": "form-control", "placeholder": "Enter event title"}
+                attrs={"class": "form-control", "placeholder": "Insira o título do evento"}
             ),
             "description": forms.Textarea(
                 attrs={
                     "class": "form-control",
-                    "placeholder": "Enter event description",
+                    "placeholder": "Insira Descrição do Evento",
                 }
             ),
             "start_time": DateInput(

@@ -99,10 +99,11 @@ AUTH_PASSWORD_VALIDATORS = [
 
 AUTH_USER_MODEL = "accounts.User"
 
+
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 
-LANGUAGE_CODE = "pt-br"
+LANGUAGE_CODE = "pt-BR"
 
 TIME_ZONE = 'America/Sao_Paulo'
 
@@ -122,3 +123,11 @@ MEDIA_URL = '/media/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+AWS_ACCESS_KEY_ID = 'AKIA2REO4SX4JQAUEIYL'
+AWS_SECRET_ACCESS_KEY = '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'
+AWS_STORAGE_BUCKET_NAME = 'app-clinica-odonto'
+
+AWS_S3_FILE_OVERWRITE = False
+AWS_DEFAULT_ACL = None
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'

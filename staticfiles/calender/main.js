@@ -448,7 +448,7 @@ var FullCalendar = (function (exports) {
             contentWidthEl.getBoundingClientRect().width;
     }
 
-    var DAY_IDS = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
+    var DAY_IDS = ['Domingo', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
     // Adding
     function addWeeks(m, n) {
         var a = dateToUtcArray(m);
